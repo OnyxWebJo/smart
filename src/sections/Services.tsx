@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Network, Wrench, Video, Shield, ArrowRight } from 'lucide-react';
+import { Network, Wrench, Video, Shield, ArrowRight, Speaker, Printer, Users, Rss } from 'lucide-react';
 
 const services = [
   {
@@ -33,6 +33,54 @@ const services = [
     description: 'Advanced security alarm solutions including intrusion detection, fire alarms, and access control systems.',
     image: '/images/service-alarms.jpg',
     features: ['Intrusion Detection', 'Fire Alarms', 'Access Control', '24/7 Monitoring'],
+  },
+  {
+    id: 5,
+    icon: Rss,
+    title: 'Low Current Systems',
+    description: 'Specialized low current solutions including structured cabling, and public address systems.',
+    image: '/images/_low-current systems.png',
+    features: ['Structured Cabling', 'BMS', 'Public Address Systems'],
+  },
+  {
+    id: 6,
+    icon: Users,
+    title: 'Attendance Systems',
+    description: 'Modern employee attendance systems with biometric and card-based solutions for accurate tracking.',
+    image: '/images/attendance.png',
+    features: ['Biometric Readers', 'Card Scanners', 'Time Tracking Software'],
+  },
+  {
+    id: 7,
+    icon: Speaker,
+    title: 'Sound Systems',
+    description: 'Professional sound system installations for commercial spaces, offices, and public venues.',
+    image: '/images/service-sound.jpg',
+    features: ['System Design', 'Speaker Installation', 'Amplifier Setup', 'Audio Zoning'],
+  },
+  {
+    id: 8,
+    icon: Shield,
+    title: 'Access Control',
+    description: 'Secure access control systems to manage and monitor entry to your premises effectively.',
+    image: '/images/service-access-control.jpg',
+    features: ['Card Readers', 'Biometric Scanners', 'Door Controllers', 'Visitor Management'],
+  },
+  {
+    id: 9,
+    icon: Printer,
+    title: 'Printer Services',
+    description: 'Sales, repair, and maintenance services for all major printer brands, along with ink and toner supplies.',
+    image: '/images/service-printers.jpg',
+    features: ['Printer Sales', 'Repair & Maintenance', 'Ink & Toner'],
+  },
+  {
+    id: 10,
+    icon: Wrench,
+    title: 'Maintenance Contracts',
+    description: 'Customized annual maintenance contracts to ensure the longevity and reliability of your IT infrastructure.',
+    image: '/images/service-contracts.jpg',
+    features: ['Preventive Maintenance', 'On-site Support', 'Remote Assistance', 'Priority Service'],
   },
 ];
 
