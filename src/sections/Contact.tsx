@@ -6,7 +6,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Visit Us',
-    details: ['Wasfi Atal Str., Amman', 'Jordan'],
+    details: ['Al-Madina Al-Monawara St, Amman', 'Jordan'],
   },
   {
     icon: Phone,
@@ -252,7 +252,7 @@ const Contact = () => {
               }`}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.999502816801!2d35.87856681516598!3d31.96185198122393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca16933575a61%3A0x7c390a7470b85298!2sWasfi%20At-Tall%20St.%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2s!4v1678204515177!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.283833219468!2d35.867747!3d31.989807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU5JzIzLjMiTiAzNcKwNTInMDMuOSJF!5e0!3m2!1sen!2s!4v1678204515177!5m2!1sen!2s"
                 width="100%"
                 height="250"
                 style={{ border: 0 }}

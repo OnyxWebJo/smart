@@ -19,7 +19,7 @@ html {
 
 /* Image loading placeholder */
 img {
-  background-color: #f1f5f9;
+  background-color: transparent;
 }
 
 /* Prevent text selection on interactive elements */
