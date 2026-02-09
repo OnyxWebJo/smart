@@ -6,7 +6,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Visit Us',
-    details: ['Al Abdali, Amman', 'Jordan'],
+    details: ['Wasfi Atal Str., Amman', 'Jordan'],
   },
   {
     icon: Phone,
@@ -21,7 +21,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: 'Working Hours',
-    details: ['Sun - Thu: 9AM - 6PM', '24/7 Emergency Support'],
+    details: ['Sat - Thu: 9AM - 6PM', '24/7 Emergency Support'],
   },
 ];
 
@@ -160,7 +160,11 @@ const Contact = () => {
   };
 
   const handlePhoneClick = (phone: string) => {
-    window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+    if (phone.includes('777')) {
+      window.open('https://wa.me/962777048833', '_blank');
+    } else {
+      window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+    }
   };
 
   const handleEmailClick = (email: string) => {
@@ -248,7 +252,7 @@ const Contact = () => {
               }`}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.1572567780246!2d35.9074!3d31.9516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca7b9c5c4e8f3%3A0x7a0f8e5c4e8f3c5c!2sAl%20Abdali%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2sjo!4v1700000000000!5m2!1sen!2sjo"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.999502816801!2d35.87856681516598!3d31.96185198122393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca16933575a61%3A0x7c390a7470b85298!2sWasfi%20At-Tall%20St.%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2s!4v1678204515177!5m2!1sen!2s"
                 width="100%"
                 height="250"
                 style={{ border: 0 }}
@@ -411,7 +415,8 @@ const Contact = () => {
                 <p className="text-center text-sm text-gray-500">
                   By submitting this form, you agree to our{' '}
                   <a href="#" className="text-turquoise hover:underline">Privacy Policy</a>
-                  {' '}and{' '}
+                  {' '}
+                  and{' '}
                   <a href="#" className="text-turquoise hover:underline">Terms of Service</a>.
                 </p>
               </form>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Check, Award, Users, Target } from 'lucide-react';
+import { Check, Award, Users, Target, Clock } from 'lucide-react';
 
 const features = [
   'Certified IT professionals with 10+ years experience',
@@ -12,6 +12,7 @@ const stats = [
   { icon: Award, value: '10+', label: 'Years Experience' },
   { icon: Users, value: '500+', label: 'Happy Clients' },
   { icon: Target, value: '1000+', label: 'Projects Done' },
+  { icon: Clock, value: '12h', label: 'Average Response Time' },
 ];
 
 const About = () => {
@@ -58,8 +59,8 @@ const About = () => {
               {/* Main Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/images/about.jpg"
-                  alt="Sources for Smart Systems Team"
+                  src="/images/about-robots.jpg"
+                  alt="Robots handling IT infrastructure"
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/30 to-transparent" />
@@ -140,7 +141,7 @@ const About = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-gray-200">
+            <div className="grid grid-cols-4 gap-4 pt-8 border-t border-gray-200">
               {stats.map((stat, index) => (
                 <div
                   key={index}

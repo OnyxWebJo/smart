@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Linkedin, Instagram, ArrowUp, MapPin, Phone, Mail } from 'lucide-react';
+import { Facebook, Instagram, ArrowUp, MapPin, Phone, Mail } from 'lucide-react';
 
 const quickLinks = [
   { name: 'Home', href: '#home' },
@@ -16,10 +16,8 @@ const services = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/p/Sources-for-smart-systems-61555609971074/', label: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/sources__systems/', label: 'Instagram' },
 ];
 
 const Footer = () => {
@@ -123,7 +121,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-turquoise flex-shrink-0 mt-0.5" />
                 <span className="text-white/70 text-sm">
-                  Al Abdali, Amman, Jordan
+                  Wasfi Atal Str., Amman, Jordan
                 </span>
               </li>
               <li className="flex items-center gap-3">

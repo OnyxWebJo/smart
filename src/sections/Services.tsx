@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Network, Wrench, Video, Shield, ArrowRight, Speaker, Printer, Users, Rss } from 'lucide-react';
+import { Network, Wrench, Video, Shield, ArrowRight, Speaker, Printer, Users, Rss, Code, Smartphone } from 'lucide-react';
 
 const services = [
   {
@@ -55,7 +55,7 @@ const services = [
     icon: Speaker,
     title: 'Sound Systems',
     description: 'Professional sound system installations for commercial spaces, offices, and public venues.',
-    image: '/images/service-sound.jpg',
+    image: '/images/service-sound-systems.jpg',
     features: ['System Design', 'Speaker Installation', 'Amplifier Setup', 'Audio Zoning'],
   },
   {
@@ -82,12 +82,27 @@ const services = [
     image: '/images/service-contracts.jpg',
     features: ['Preventive Maintenance', 'On-site Support', 'Remote Assistance', 'Priority Service'],
   },
+  {
+    id: 11,
+    icon: Code,
+    title: 'Website Design',
+    description: 'Creative and responsive website design to build a strong online presence for your brand.',
+    image: '/images/service-website-design.jpg',
+    features: ['Responsive Design', 'UI/UX', 'E-commerce', 'CMS'],
+  },
+  {
+    id: 12,
+    icon: Smartphone,
+    title: 'Mobile App Development',
+    description: 'Custom mobile app development for iOS and Android to engage your customers on the go.',
+    image: '/images/service-mobile-app.jpg',
+    features: ['iOS Development', 'Android Development', 'Cross-Platform', 'App UI/UX'],
+  },
 ];
 
 const Services = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeService, setActiveService] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -141,12 +156,10 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-500 cursor-pointer ${
+              className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              } ${activeService === service.id ? 'lg:col-span-2 lg:row-span-1' : ''}`}
+              } hover:scale-105 hover:shadow-xl`}
               style={{ transitionDelay: `${200 + index * 100}ms` }}
-              onMouseEnter={() => setActiveService(service.id)}
-              onMouseLeave={() => setActiveService(null)}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
