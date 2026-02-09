@@ -50,7 +50,7 @@ const Navigation = () => {
               }}
               className="flex items-center gap-2 group"
             >
-              <img src="/images/logo.png" alt="Sources for smart system" className="h-10 w-auto" />
+              <img src="/images/logo.png" alt="Sources for Smart Systems" className="h-10 w-auto" />
             </a>
 
             {/* Desktop Navigation */}
@@ -76,13 +76,13 @@ const Navigation = () => {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <a
-                href="tel:+962790000000"
+                href="tel:+962777048833"
                 className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${
                   isScrolled ? 'text-gray-700' : 'text-white/90'
                 }`}
               >
                 <Phone className="w-4 h-4" />
-                <span>+962 79 000 0000</span>
+                <span>+962 777 048 833</span>
               </a>
               <button
                 onClick={() => scrollToSection('#contact')}
@@ -138,11 +138,11 @@ const Navigation = () => {
             </div>
             <div className="mt-8">
               <a
-                href="tel:+962790000000"
+                href="tel:+962777048833"
                 className="flex items-center gap-3 text-gray-700 mb-4"
               >
                 <Phone className="w-5 h-5 text-turquoise" />
-                <span>+962 79 000 0000</span>
+                <span>+962 777 048 833</span>
               </a>
               <button
                 onClick={() => scrollToSection('#contact')}
