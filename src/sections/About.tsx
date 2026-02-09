@@ -59,7 +59,7 @@ const About = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/about.jpg"
-                  alt="TechFlow Team"
+                  alt="Sources for Smart Systems Team"
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/30 to-transparent" />
@@ -108,7 +108,7 @@ const About = () => {
 
             {/* Description */}
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              TechFlow is a leading IT solutions provider based in Amman, Jordan. We specialize 
+              Sources for Smart Systems is a leading IT solutions provider based in Amman, Jordan. We specialize 
               in delivering comprehensive technology services that help businesses thrive in the 
               digital age. From network infrastructure to security systems, our expert team ensures 
               your technology works seamlessly.

@@ -50,16 +50,7 @@ const Navigation = () => {
               }}
               className="flex items-center gap-2 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-turquoise flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <span className="text-white font-display font-bold text-xl">T</span>
-              </div>
-              <span
-                className={`font-display font-semibold text-xl transition-colors duration-300 ${
-                  isScrolled ? 'text-gray-900' : 'text-white'
-                }`}
-              >
-                TechFlow
-              </span>
+              <img src="/images/logo.png" alt="Sources for smart system" className="h-10 w-auto" />
             </a>
 
             {/* Desktop Navigation */}

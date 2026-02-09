@@ -11,12 +11,12 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Call Us',
-    details: ['+962 79 000 0000', '+962 6 000 0000'],
+    details: ['+962 777 048 833', '+962 781 211 444'],
   },
   {
     icon: Mail,
     title: 'Email Us',
-    details: ['info@techflow.jo', 'support@techflow.jo'],
+    details: ['info@sources-systems.net', 'support@sources-systems.net'],
   },
   {
     icon: Clock,
@@ -27,7 +27,7 @@ const contactInfo = [
 
 // EmailJS configuration - Replace with your actual credentials
 const EMAILJS_CONFIG = {
-  SERVICE_ID: 'service_techflow', // Replace with your EmailJS service ID
+  SERVICE_ID: 'service_sources_systems', // Replace with your EmailJS service ID
   TEMPLATE_ID: 'template_contact', // Replace with your EmailJS template ID
   PUBLIC_KEY: 'your_public_key_here', // Replace with your EmailJS public key
 };
@@ -124,7 +124,7 @@ const Contact = () => {
           phone: formData.phone || 'Not provided',
           service: formData.service || 'Not specified',
           message: formData.message,
-          to_email: 'info@techflow.jo',
+          to_email: 'info@sources-systems.net',
         };
 
         await emailjs.send(
@@ -142,7 +142,7 @@ const Contact = () => {
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
-      setStatusMessage('Sorry, something went wrong. Please try again or contact us directly at info@techflow.jo');
+      setStatusMessage('Sorry, something went wrong. Please try again or contact us directly at info@sources-systems.net');
     } finally {
       setIsSubmitting(false);
     }
@@ -255,7 +255,7 @@ const Contact = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="TechFlow Location"
+                title="Sources for Smart Systems Location"
                 className="grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
@@ -345,7 +345,7 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none ${
                         errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                       }`}
-                      placeholder="+962 79 000 0000"
+                      placeholder="+962 777 048 833"
                     />
                     {errors.phone && (
                       <p className="mt-1 text-sm text-red-500">{errors.phone}</p>

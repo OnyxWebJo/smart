@@ -53,12 +53,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <a href="#home" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-turquoise flex items-center justify-center">
-                <span className="text-white font-display font-bold text-xl">T</span>
-              </div>
-              <span className="font-display font-semibold text-xl text-white">
-                TechFlow
-              </span>
+              <img src="/images/logo.png" alt="Sources for Smart Systems" className="h-10 w-auto" />
             </a>
             <p className="text-white/70 text-sm leading-relaxed mb-6">
               Your trusted IT partner in Amman, Jordan. We provide comprehensive 
@@ -134,19 +129,28 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-turquoise flex-shrink-0" />
                 <a
-                  href="tel:+962790000000"
+                  href="tel:+962777048833"
                   className="text-white/70 text-sm transition-colors duration-300 hover:text-turquoise"
                 >
-                  +962 79 000 0000
+                  +962 777 048 833
+                </a>
+              </li>
+               <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-turquoise flex-shrink-0" />
+                <a
+                  href="tel:+962781211444"
+                  className="text-white/70 text-sm transition-colors duration-300 hover:text-turquoise"
+                >
+                  +962 781 211 444
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-turquoise flex-shrink-0" />
                 <a
-                  href="mailto:info@techflow.jo"
+                  href="mailto:info@sources-systems.net"
                   className="text-white/70 text-sm transition-colors duration-300 hover:text-turquoise"
                 >
-                  info@techflow.jo
+                  info@sources-systems.net
                 </a>
               </li>
             </ul>
@@ -159,7 +163,7 @@ const Footer = () => {
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white/50 text-sm text-center sm:text-left">
-              © {new Date().getFullYear()} TechFlow. All rights reserved. Made with passion in Amman, Jordan.
+              © {new Date().getFullYear()} Sources for Smart Systems. All rights reserved. Made with passion in Amman, Jordan.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-white/50 text-sm transition-colors duration-300 hover:text-turquoise">
