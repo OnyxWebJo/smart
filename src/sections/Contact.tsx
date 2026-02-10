@@ -1,31 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Visit Us',
-    details: ['Al-Madina Al-Monawara St, Bullding # 202 office # 302', 'Amman, Jordan'],
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    details: ['Sales: +962 777 048 833', 'Support: +962 781 211 444'],
-  },
-  {
-    icon: Mail,
-    title: 'Email Us',
-    details: ['info@sources-systems.net', 'support@sources-systems.net'],
-  },
-  {
-    icon: Clock,
-    title: 'Working Hours',
-    details: ['Sat - Thu: 9AM - 6PM', '24/7 Emergency Support'],
-  },
-];
-
-// EmailJS configuration - Replace with your actual credentials
 const EMAILJS_CONFIG = {
   SERVICE_ID: 'service_sources_systems', // Replace with your EmailJS service ID
   TEMPLATE_ID: 'template_contact', // Replace with your EmailJS template ID
@@ -33,6 +10,33 @@ const EMAILJS_CONFIG = {
 };
 
 const Contact = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
+
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: t('contact_info_visit'),
+      details: [t('contact_info_visit_details_1'), t('contact_info_visit_details_2')],
+    },
+    {
+      icon: Phone,
+      title: t('contact_info_call'),
+      details: [t('contact_info_call_details_1'), t('contact_info_call_details_2')],
+    },
+    {
+      icon: Mail,
+      title: t('contact_info_email'),
+      details: [t('contact_info_email_details_1'), t('contact_info_email_details_2')],
+    },
+    {
+      icon: Clock,
+      title: t('contact_info_hours'),
+      details: [t('contact_info_hours_details_1'), t('contact_info_hours_details_2')],
+    },
+  ];
+  
+
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -46,7 +50,6 @@ const Contact = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [statusMessage, setStatusMessage] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,25 +73,25 @@ const Contact = () => {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = t('contact_form_name_error_required');
     } else if (formData.name.length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
+      newErrors.name = t('contact_form_name_error_min');
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('contact_form_email_error_required');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = t('contact_form_email_error_invalid');
     }
 
     if (formData.phone && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Please enter a valid phone number';
+      newErrors.phone = t('contact_form_phone_error_invalid');
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = t('contact_form_message_error_required');
     } else if (formData.message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
+      newErrors.message = t('contact_form_message_error_min');
     }
 
     setErrors(newErrors);
@@ -106,18 +109,13 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      // Check if EmailJS is configured
       if (EMAILJS_CONFIG.PUBLIC_KEY === 'your_public_key_here') {
-        // Demo mode - simulate successful submission
         await new Promise((resolve) => setTimeout(resolve, 1500));
         console.log('Form Data (Demo Mode):', formData);
-        
         setSubmitStatus('success');
-        setStatusMessage('Thank you for your message! We will get back to you within 24 hours.');
         setFormData({ name: '', email: '', phone: '', service: '', message: '' });
         setErrors({});
       } else {
-        // Real EmailJS submission
         const templateParams = {
           from_name: formData.name,
           from_email: formData.email,
@@ -135,14 +133,12 @@ const Contact = () => {
         );
 
         setSubmitStatus('success');
-        setStatusMessage('Thank you for your message! We will get back to you within 24 hours.');
         setFormData({ name: '', email: '', phone: '', service: '', message: '' });
         setErrors({});
       }
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
-      setStatusMessage('Sorry, something went wrong. Please try again or contact us directly at info@sources-systems.net');
     } finally {
       setIsSubmitting(false);
     }
@@ -153,12 +149,11 @@ const Contact = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
-
+  
   const handlePhoneClick = (phone: string) => {
     if (phone.includes('777')) {
       window.open('https://wa.me/962777048833', '_blank');
@@ -171,18 +166,17 @@ const Contact = () => {
     window.location.href = `mailto:${email}`;
   };
 
+
   return (
     <section
       id="contact"
       ref={sectionRef}
       className="relative w-full py-20 lg:py-32 bg-light-bg overflow-hidden"
     >
-      {/* Background Decorations */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-turquoise/5 rounded-full blur-3xl" />
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        {/* Section Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -190,22 +184,26 @@ const Contact = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/10 rounded-full mb-6">
             <span className="w-2 h-2 bg-turquoise rounded-full" />
-            <span className="text-turquoise text-sm font-medium">Contact Us</span>
+            <span className="text-turquoise text-sm font-medium">{t('contact_label')}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Get In Touch
+            {t('contact_heading')}
           </h2>
           <p className="text-gray-600 text-lg">
-            Ready to transform your business with cutting-edge IT solutions? 
-            Contact us today for a free consultation.
+            {t('contact_desc')}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Contact Info */}
           <div
             className={`lg:col-span-2 transition-all duration-1000 delay-200 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+              isVisible
+                ? isRTL
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-100 translate-x-0'
+                : isRTL
+                ? 'opacity-0 translate-x-12'
+                : 'opacity-0 -translate-x-12'
             }`}
           >
             <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6">
@@ -225,27 +223,26 @@ const Contact = () => {
                       {info.title}
                     </h4>
                     {info.details.map((detail, i) => (
-                      <p 
-                        key={i} 
-                        className={`text-gray-600 text-sm ${
-                          info.icon === Phone ? 'cursor-pointer hover:text-turquoise transition-colors' : ''
-                        } ${
-                          info.icon === Mail ? 'cursor-pointer hover:text-turquoise transition-colors' : ''
-                        }`}
-                        onClick={() => {
-                          if (info.icon === Phone) handlePhoneClick(detail);
-                          if (info.icon === Mail) handleEmailClick(detail);
-                        }}
-                      >
-                        {detail}
-                      </p>
+                       <p 
+                       key={i} 
+                       className={`text-gray-600 text-sm ${
+                         info.icon === Phone ? 'cursor-pointer hover:text-turquoise transition-colors' : ''
+                       } ${
+                         info.icon === Mail ? 'cursor-pointer hover:text-turquoise transition-colors' : ''
+                       }`}
+                       onClick={() => {
+                         if (info.icon === Phone) handlePhoneClick(detail);
+                         if (info.icon === Mail) handleEmailClick(detail);
+                       }}
+                     >
+                       {detail}
+                     </p>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Map */}
             <div
               className={`mt-6 rounded-xl overflow-hidden shadow-lg transition-all duration-1000 delay-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -265,23 +262,28 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div
             className={`lg:col-span-3 transition-all duration-1000 delay-400 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+              isVisible
+                ? isRTL
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-100 translate-x-0'
+                : isRTL
+                ? 'opacity-0 -translate-x-12'
+                : 'opacity-0 translate-x-12'
             }`}
           >
             <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-10">
               <h3 className="font-display text-2xl font-bold text-gray-900 mb-6">
-                Send Us a Message
+                {t('contact_form_heading')}
               </h3>
 
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-green-800 mb-1">Message Sent Successfully!</h4>
-                    <p className="text-green-700 text-sm">{statusMessage}</p>
+                    <h4 className="font-semibold text-green-800 mb-1">{t('contact_form_success_heading')}</h4>
+                    <p className="text-green-700 text-sm">{t('contact_form_success_message')}</p>
                   </div>
                 </div>
               )}
@@ -290,8 +292,8 @@ const Contact = () => {
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-red-800 mb-1">Something Went Wrong</h4>
-                    <p className="text-red-700 text-sm">{statusMessage}</p>
+                    <h4 className="font-semibold text-red-800 mb-1">{t('contact_form_error_heading')}</h4>
+                    <p className="text-red-700 text-sm">{t('contact_form_error_message')}</p>
                   </div>
                 </div>
               )}
@@ -300,7 +302,7 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Your Name <span className="text-red-500">*</span>
+                      {t('contact_form_name_label')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -310,7 +312,7 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none ${
                         errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                       }`}
-                      placeholder="John Doe"
+                      placeholder={t('contact_form_name_placeholder')}
                     />
                     {errors.name && (
                       <p className="mt-1 text-sm text-red-500">{errors.name}</p>
@@ -318,7 +320,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address <span className="text-red-500">*</span>
+                      {t('contact_form_email_label')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -328,7 +330,7 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none ${
                         errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                       }`}
-                      placeholder="john@example.com"
+                      placeholder={t('contact_form_email_placeholder')}
                     />
                     {errors.email && (
                       <p className="mt-1 text-sm text-red-500">{errors.email}</p>
@@ -339,7 +341,7 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
+                      {t('contact_form_phone_label')}
                     </label>
                     <input
                       type="tel"
@@ -349,7 +351,7 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none ${
                         errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                       }`}
-                      placeholder="+962 777 048 833"
+                      placeholder={t('contact_form_phone_placeholder')}
                     />
                     {errors.phone && (
                       <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
@@ -357,27 +359,27 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Service Interested In
+                      {t('contact_form_service_label')}
                     </label>
                     <select
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none bg-white"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none bg-.hite"
                     >
-                      <option value="">Select a service</option>
-                      <option value="Computer Networks">Computer Networks</option>
-                      <option value="Computer Maintenance">Computer Maintenance</option>
-                      <option value="CCTV Installation">CCTV Installation</option>
-                      <option value="Alarm Systems">Alarm Systems</option>
-                      <option value="Other">Other</option>
+                      <option value="">{t('contact_form_service_placeholder')}</option>
+                      <option value="Computer Networks">{t('contact_form_service_option_1')}</option>
+                      <option value="Computer Maintenance">{t('contact_form_service_option_2')}</option>
+                      <option value="CCTV Installation">{t('contact_form_service_option_3')}</option>
+                      <option value="Alarm Systems">{t('contact_form_service_option_4')}</option>
+                      <option value="Other">{t('contact_form_service_option_5')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Message <span className="text-red-500">*</span>
+                    {t('contact_form_message_label')} <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -387,7 +389,7 @@ const Contact = () => {
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-turquoise/20 focus:border-turquoise transition-all duration-300 outline-none resize-none ${
                       errors.message ? 'border-red-300 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
-                    placeholder="Tell us about your project or requirements..."
+                    placeholder={t('contact_form_message_placeholder')}
                   />
                   {errors.message && (
                     <p className="mt-1 text-sm text-red-500">{errors.message}</p>
@@ -402,22 +404,28 @@ const Contact = () => {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Sending...
+                      {t('contact_form_submitting_button')}
                     </>
                   ) : (
                     <>
-                      Send Message
+                      {t('contact_form_submit_button')}
                       <Send className="w-5 h-5" />
                     </>
                   )}
                 </button>
 
                 <p className="text-center text-sm text-gray-500">
-                  By submitting this form, you agree to our{' '}
-                  <a href="#" className="text-turquoise hover:underline">Privacy Policy</a>
-                  {' '}
-                  and{' '}
-                  <a href="#" className="text-turquoise hover:underline">Terms of Service</a>.
+                  <Trans
+                    i18nKey="contact_form_agreement_text"
+                    components={[
+                      <a href="#" className="text-turquoise hover:underline" />,
+                      <a href="#" className="text-turquoise hover:underline" />,
+                    ]}
+                    values={{
+                      privacy_policy: t('contact_form_privacy_policy'),
+                      terms_of_service: t('contact_form_terms_of_service'),
+                    }}
+                  />
                 </p>
               </form>
             </div>

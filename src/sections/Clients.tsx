@@ -1,23 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-
-const clients = [
-  { src: '/images/clients/client-1.png', alt: 'Client 1' },
-  { src: '/images/clients/client-2.png', alt: 'Client 2' },
-  { src: '/images/clients/client-3.png', alt: 'Client 3' },
-  { src: '/images/clients/client-4.png', alt: 'Client 4' },
-  { src: '/images/clients/client-5.png', alt: 'Client 5' },
-  { src: '/images/clients/client-6.png', alt: 'Client 6' },
-  { src: '/images/clients/client-7.png', alt: 'Client 7' },
-  { src: '/images/clients/client-8.png', alt: 'Client 8' },
-  { src: '/images/clients/client-9.png', alt: 'Client 9' },
-  { src: '/images/clients/client-10.png', alt: 'Client 10' },
-  { src: '/images/clients/client-11.png', alt: 'Client 11' },
-  { src: '/images/clients/client-12.png', alt: 'Client 12' },
-];
+import { useTranslation } from 'react-i18next';
 
 const Clients = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const clients = [
+    { src: '/images/clients/client-1.png', alt: t('client_1_alt') },
+    { src: '/images/clients/client-2.png', alt: t('client_2_alt') },
+    { src: '/images/clients/client-3.png', alt: t('client_3_alt') },
+    { src: '/images/clients/client-4.png', alt: t('client_4_alt') },
+    { src: '/images/clients/client-5.png', alt: t('client_5_alt') },
+    { src: '/images/clients/client-6.png', alt: t('client_6_alt') },
+    { src: '/images/clients/client-7.png', alt: t('client_7_alt') },
+    { src: '/images/clients/client-8.png', alt: t('client_8_alt') },
+    { src: '/images/clients/client-9.png', alt: t('client_9_alt') },
+    { src: '/images/clients/client-10.png', alt: t('client_10_alt') },
+    { src: '/images/clients/client-11.png', alt: t('client_11_alt') },
+    { src: '/images/clients/client-12.png', alt: t('client_12_alt') },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,13 +54,13 @@ const Clients = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/10 rounded-full mb-6">
             <span className="w-2 h-2 bg-turquoise rounded-full" />
-            <span className="text-turquoise text-sm font-medium">Our Clients</span>
+            <span className="text-turquoise text-sm font-medium">{t('clients_label')}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Trusted by Leading Companies
+            {t('clients_heading')}
           </h2>
           <p className="text-gray-600 text-lg">
-            We are proud to have partnered with a diverse range of clients, from startups to established enterprises.
+            {t('clients_desc')}
           </p>
         </div>
 

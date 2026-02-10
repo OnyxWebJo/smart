@@ -1,31 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MessageSquare, Settings, HeadphonesIcon, Check } from 'lucide-react';
 
-const steps = [
-  {
-    number: '01',
-    icon: MessageSquare,
-    title: 'Consultation',
-    description: 'We begin by understanding your business needs, challenges, and goals. Our experts analyze your current infrastructure and recommend the best solutions tailored to your requirements.',
-    points: ['Free initial assessment', 'Requirements analysis', 'Solution recommendations', 'Budget planning'],
-  },
-  {
-    number: '02',
-    icon: Settings,
-    title: 'Implementation',
-    description: 'Our certified technicians execute the planned solution with minimal disruption to your operations. We ensure quality installation and configuration of all systems.',
-    points: ['Professional installation', 'System configuration', 'Quality testing', 'Staff training'],
-  },
-  {
-    number: '03',
-    icon: HeadphonesIcon,
-    title: 'Support',
-    description: 'We provide ongoing maintenance and support to ensure your systems run smoothly. Our 24/7 support team is always ready to assist you with any issues.',
-    points: ['24/7 technical support', 'Regular maintenance', 'System updates', 'Performance monitoring'],
-  },
-];
-
 const Process = () => {
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      number: '01',
+      icon: MessageSquare,
+      title: t('process_step_1_title'),
+      description: t('process_step_1_desc'),
+      points: [
+        t('process_step_1_p_1'),
+        t('process_step_1_p_2'),
+        t('process_step_1_p_3'),
+        t('process_step_1_p_4'),
+      ],
+    },
+    {
+      number: '02',
+      icon: Settings,
+      title: t('process_step_2_title'),
+      description: t('process_step_2_desc'),
+      points: [
+        t('process_step_2_p_1'),
+        t('process_step_2_p_2'),
+        t('process_step_2_p_3'),
+        t('process_step_2_p_4'),
+      ],
+    },
+    {
+      number: '03',
+      icon: HeadphonesIcon,
+      title: t('process_step_3_title'),
+      description: t('process_step_3_desc'),
+      points: [
+        t('process_step_3_p_1'),
+        t('process_step_3_p_2'),
+        t('process_step_3_p_3'),
+        t('process_step_3_p_4'),
+      ],
+    },
+  ];
+
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -87,14 +105,13 @@ const Process = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/20 rounded-full mb-6">
             <span className="w-2 h-2 bg-turquoise rounded-full animate-pulse" />
-            <span className="text-turquoise text-sm font-medium">Our Process</span>
+            <span className="text-turquoise text-sm font-medium">{t('process_label')}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            How We Work
+            {t('process_heading')}
           </h2>
           <p className="text-white/70 text-lg">
-            Our streamlined process ensures efficient delivery of IT solutions 
-            with maximum value for your investment.
+            {t('process_desc')}
           </p>
         </div>
 
@@ -129,7 +146,7 @@ const Process = () => {
                   {/* Step Number */}
                   <div className="absolute -top-4 left-8 px-3 py-1 bg-turquoise rounded-lg">
                     <span className="text-white font-display font-bold text-sm">
-                      Step {step.number}
+                      {t('process_step')} {step.number}
                     </span>
                   </div>
 
@@ -207,10 +224,10 @@ const Process = () => {
           }`}
         >
           {[
-            { value: '30 Minutes', label: 'Average Response Time' },
-            { value: '99%', label: 'Project Success Rate' },
-            { value: '24/7', label: 'Support Available' },
-            { value: '100%', label: 'Client Focused' },
+            { value: t('process_stat_1_value'), label: t('process_stat_1_label') },
+            { value: t('process_stat_2_value'), label: t('process_stat_2_label') },
+            { value: t('process_stat_3_value'), label: t('process_stat_3_label') },
+            { value: t('process_stat_4_value'), label: t('process_stat_4_label') },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl lg:text-4xl font-display font-bold text-turquoise mb-2">

@@ -1,44 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Linkedin, Twitter, User } from 'lucide-react';
 
-const teamMembers = [
-  {
-    name: 'Ahmad Elyan',
-    role: 'CEO & Founder',
-    social: {
-      linkedin: '#',
-      twitter: '#',
-    },
-  },
-  {
-    name: 'Jane Smith',
-    role: 'Chief Technology Officer',
-    social: {
-      linkedin: '#',
-      twitter: '#',
-    },
-  },
-  {
-    name: 'Peter Jones',
-    role: 'Lead Engineer',
-    social: {
-      linkedin: '#',
-      twitter: '#',
-    },
-  },
-  {
-    name: 'Shadi Salameh',
-    role: 'Developer',
-    social: {
-      linkedin: '#',
-      twitter: '#',
-    },
-  },
-];
-
 const Team = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const teamMembers = [
+    {
+      name: t('team_member_1_name'),
+      role: t('team_member_1_role'),
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
+    },
+    {
+      name: t('team_member_2_name'),
+      role: t('team_member_2_role'),
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
+    },
+    {
+      name: t('team_member_3_name'),
+      role: t('team_member_3_role'),
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
+    },
+    {
+      name: t('team_member_4_name'),
+      role: t('team_member_4_role'),
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,13 +74,13 @@ const Team = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/10 rounded-full mb-6">
             <span className="w-2 h-2 bg-turquoise rounded-full" />
-            <span className="text-turquoise text-sm font-medium">Our Team</span>
+            <span className="text-turquoise text-sm font-medium">{t('team_label')}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Meet Our Experts
+            {t('team_heading')}
           </h2>
           <p className="text-gray-600 text-lg">
-            We have a dedicated team of professionals who are passionate about technology and committed to delivering the best results.
+            {t('team_desc')}
           </p>
         </div>
 

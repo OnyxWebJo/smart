@@ -1,106 +1,109 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Network, Wrench, Video, Shield, ArrowRight, Speaker, Printer, Users, Rss, Code, Smartphone } from 'lucide-react';
 
-const services = [
-  {
-    id: 1,
-    icon: Network,
-    title: 'Computer Networks',
-    description: 'Design, installation, and maintenance of robust network infrastructure. From LAN setup to enterprise-wide solutions, we ensure seamless connectivity.',
-    image: '/images/service-networks.jpg',
-    features: ['Network Design & Setup', 'WiFi Solutions', 'Network Security', 'Troubleshooting'],
-  },
-  {
-    id: 2,
-    icon: Wrench,
-    title: 'Computer Maintenance',
-    description: 'Comprehensive hardware and software maintenance services to keep your systems running at peak performance.',
-    image: '/images/service-maintenance.jpg',
-    features: ['Hardware Repairs', 'Software Updates', 'Virus Removal', 'Data Recovery'],
-  },
-  {
-    id: 3,
-    icon: Video,
-    title: 'CCTV Installation',
-    description: 'State-of-the-art surveillance systems to protect your business premises with 24/7 monitoring capabilities.',
-    image: '/images/service-cctv.jpg',
-    features: ['HD Cameras', 'Remote Monitoring', 'Cloud Storage', 'Motion Detection'],
-  },
-  {
-    id: 4,
-    icon: Shield,
-    title: 'Alarm Systems',
-    description: 'Advanced security alarm solutions including intrusion detection, fire alarms, and access control systems.',
-    image: '/images/service-alarms.jpg',
-    features: ['Intrusion Detection', 'Fire Alarms', 'Access Control', '24/7 Monitoring'],
-  },
-  {
-    id: 5,
-    icon: Rss,
-    title: 'Low Current Systems',
-    description: 'Specialized low current solutions including structured cabling, and public address systems.',
-    image: '/images/_low-current systems.png',
-    features: ['Structured Cabling', 'BMS', 'Public Address Systems'],
-  },
-  {
-    id: 6,
-    icon: Users,
-    title: 'Attendance Systems',
-    description: 'Modern employee attendance systems with biometric and card-based solutions for accurate tracking.',
-    image: '/images/attendance.png',
-    features: ['Biometric Readers', 'Card Scanners', 'Time Tracking Software'],
-  },
-  {
-    id: 7,
-    icon: Speaker,
-    title: 'Sound Systems',
-    description: 'Professional sound system installations for commercial spaces, offices, and public venues.',
-    image: '/images/service-sound-systems.jpg',
-    features: ['System Design', 'Speaker Installation', 'Amplifier Setup', 'Audio Zoning'],
-  },
-  {
-    id: 8,
-    icon: Shield,
-    title: 'Access Control',
-    description: 'Secure access control systems to manage and monitor entry to your premises effectively.',
-    image: '/images/service-access-control.jpg',
-    features: ['Card Readers', 'Biometric Scanners', 'Door Controllers', 'Visitor Management'],
-  },
-  {
-    id: 9,
-    icon: Printer,
-    title: 'Printer Services',
-    description: 'Sales, repair, and maintenance services for all major printer brands, along with ink and toner supplies.',
-    image: '/images/service-printers.jpg',
-    features: ['Printer Sales', 'Repair & Maintenance', 'Ink & Toner'],
-  },
-  {
-    id: 10,
-    icon: Wrench,
-    title: 'Maintenance Contracts',
-    description: 'Customized annual maintenance contracts to ensure the longevity and reliability of your IT infrastructure.',
-    image: '/images/service-contracts.jpg',
-    features: ['Preventive Maintenance', 'On-site Support', 'Remote Assistance', 'Priority Service'],
-  },
-  {
-    id: 11,
-    icon: Code,
-    title: 'Website Design',
-    description: 'Creative and responsive website design to build a strong online presence for your brand.',
-    image: '/images/service-website-design.jpg',
-    features: ['Responsive Design', 'UI/UX', 'E-commerce', 'CMS'],
-  },
-  {
-    id: 12,
-    icon: Smartphone,
-    title: 'Mobile App Development',
-    description: 'Custom mobile app development for iOS and Android to engage your customers on the go.',
-    image: '/images/service-mobile-app.jpg',
-    features: ['iOS Development', 'Android Development', 'Cross-Platform', 'App UI/UX'],
-  },
-];
-
 const Services = () => {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      id: 1,
+      icon: Network,
+      title: t('service_1_title'),
+      description: t('service_1_desc'),
+      image: '/images/service-networks.jpg',
+      features: [t('service_1_f_1'), t('service_1_f_2'), t('service_1_f_3'), t('service_1_f_4')],
+    },
+    {
+      id: 2,
+      icon: Wrench,
+      title: t('service_2_title'),
+      description: t('service_2_desc'),
+      image: '/images/service-maintenance.jpg',
+      features: [t('service_2_f_1'), t('service_2_f_2'), t('service_2_f_3'), t('service_2_f_4')],
+    },
+    {
+      id: 3,
+      icon: Video,
+      title: t('service_3_title'),
+      description: t('service_3_desc'),
+      image: '/images/service-cctv.jpg',
+      features: [t('service_3_f_1'), t('service_3_f_2'), t('service_3_f_3'), t('service_3_f_4')],
+    },
+    {
+      id: 4,
+      icon: Shield,
+      title: t('service_4_title'),
+      description: t('service_4_desc'),
+      image: '/images/service-alarms.jpg',
+      features: [t('service_4_f_1'), t('service_4_f_2'), t('service_4_f_3'), t('service_4_f_4')],
+    },
+    {
+      id: 5,
+      icon: Rss,
+      title: t('service_5_title'),
+      description: t('service_5_desc'),
+      image: '/images/_low-current systems.png',
+      features: [t('service_5_f_1'), t('service_5_f_2'), t('service_5_f_3')],
+    },
+    {
+      id: 6,
+      icon: Users,
+      title: t('service_6_title'),
+      description: t('service_6_desc'),
+      image: '/images/attendance.png',
+      features: [t('service_6_f_1'), t('service_6_f_2'), t('service_6_f_3')],
+    },
+    {
+      id: 7,
+      icon: Speaker,
+      title: t('service_7_title'),
+      description: t('service_7_desc'),
+      image: '/images/service-sound-systems.jpg',
+      features: [t('service_7_f_1'), t('service_7_f_2'), t('service_7_f_3'), t('service_7_f_4')],
+    },
+    {
+      id: 8,
+      icon: Shield,
+      title: t('service_8_title'),
+      description: t('service_8_desc'),
+      image: '/images/service-access-control.jpg',
+      features: [t('service_8_f_1'), t('service_8_f_2'), t('service_8_f_3'), t('service_8_f_4')],
+    },
+    {
+      id: 9,
+      icon: Printer,
+      title: t('service_9_title'),
+      description: t('service_9_desc'),
+      image: '/images/service-printers.jpg',
+      features: [t('service_9_f_1'), t('service_9_f_2'), t('service_9_f_3')],
+    },
+    {
+      id: 10,
+      icon: Wrench,
+      title: t('service_10_title'),
+      description: t('service_10_desc'),
+      image: '/images/service-contracts.jpg',
+      features: [t('service_10_f_1'), t('service_10_f_2'), t('service_10_f_3'), t('service_10_f_4')],
+    },
+    {
+      id: 11,
+      icon: Code,
+      title: t('service_11_title'),
+      description: t('service_11_desc'),
+      image: '/images/service-website-design.jpg',
+      features: [t('service_11_f_1'), t('service_11_f_2'), t('service_11_f_3'), t('service_11_f_4')],
+    },
+    {
+      id: 12,
+      icon: Smartphone,
+      title: t('service_12_title'),
+      description: t('service_12_desc'),
+      image: '/images/service-mobile-app.jpg',
+      features: [t('service_12_f_1'), t('service_12_f_2'), t('service_12_f_3'), t('service_12_f_4')],
+    },
+  ];
+
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -140,14 +143,13 @@ const Services = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/10 rounded-full mb-6">
             <span className="w-2 h-2 bg-turquoise rounded-full" />
-            <span className="text-turquoise text-sm font-medium">Our Services</span>
+            <span className="text-turquoise text-sm font-medium">{t('services_label')}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Comprehensive IT Solutions for Your Business
+            {t('services_heading')}
           </h2>
           <p className="text-gray-600 text-lg">
-            From network infrastructure to security systems, we provide end-to-end technology 
-            services tailored to meet your unique business needs.
+            {t('services_desc')}
           </p>
         </div>
 
@@ -202,7 +204,7 @@ const Services = () => {
                   href="#contact"
                   className="inline-flex items-center gap-2 text-turquoise font-medium text-sm group/link"
                 >
-                  Learn More
+                  {t('learn_more')}
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                 </a>
               </div>
@@ -221,12 +223,12 @@ const Services = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <p className="text-gray-600 mb-4">Need a customized solution for your business?</p>
+          <p className="text-gray-600 mb-4">{t('services_cta_text')}</p>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-turquoise text-white font-semibold rounded-full transition-all duration-300 hover:bg-turquoise-600 hover:shadow-glow-lg hover:scale-105"
           >
-            Get Free Consultation
+            {t('services_cta_button')}
             <ArrowRight className="w-5 h-5" />
           </a>
         </div>

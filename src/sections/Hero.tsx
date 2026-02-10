@@ -1,25 +1,28 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, ArrowRight, Play } from 'lucide-react';
 
-const slides = [
-  {
-    image: '/images/hero-1.jpg',
-    title: 'Empowering Your Business with Cutting-Edge Technology',
-    subtitle: 'Reliable IT Support & Solutions for Seamless Operations',
-  },
-  {
-    image: '/images/hero-2.jpg',
-    title: 'Expert Network Infrastructure Solutions',
-    subtitle: 'Build a robust, secure, and scalable network for your business',
-  },
-  {
-    image: '/images/hero-3.jpg',
-    title: 'Advanced Security Systems & CCTV',
-    subtitle: 'Protect your assets with state-of-the-art surveillance technology',
-  },
-];
-
 const Hero = () => {
+  const { t } = useTranslation();
+
+  const slides = [
+    {
+      image: '/images/hero-1.jpg',
+      title: t('hero_title_1'),
+      subtitle: t('hero_subtitle_1'),
+    },
+    {
+      image: '/images/hero-2.jpg',
+      title: t('hero_title_2'),
+      subtitle: t('hero_subtitle_2'),
+    },
+    {
+      image: '/images/hero-3.jpg',
+      title: t('hero_title_3'),
+      subtitle: t('hero_subtitle_3'),
+    },
+  ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
@@ -107,7 +110,7 @@ const Hero = () => {
               style={{ transitionDelay: '0.1s' }}
             >
               <span className="w-2 h-2 bg-turquoise rounded-full animate-pulse" />
-              <span className="text-white/90 text-sm font-medium">Trusted IT Partner in Jordan</span>
+              <span className="text-white/90 text-sm font-medium">{t('hero_badge')}</span>
             </div>
 
             {/* Title */}
@@ -119,7 +122,7 @@ const Hero = () => {
             >
               {slides[currentSlide].title.split(' ').map((word, i) => (
                 <span key={i} className="inline-block mr-3">
-                  {word === 'Technology' || word === 'Solutions' || word === 'CCTV' ? (
+                  {word === 'Technology' || word === 'Solutions' || word === 'CCTV' || word === 'التقنية' || word === 'الحلول' || word === 'الأمنية' ? (
                     <span className="text-turquoise">{word}</span>
                   ) : (
                     word
@@ -149,7 +152,7 @@ const Hero = () => {
                 onClick={() => scrollToSection('#contact')}
                 className="group px-8 py-4 bg-turquoise text-white font-semibold rounded-full transition-all duration-300 hover:bg-turquoise-600 hover:shadow-glow-lg hover:scale-105 flex items-center gap-2"
               >
-                Get Started
+                {t('hero_cta_1')}
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
               <button
@@ -157,7 +160,7 @@ const Hero = () => {
                 className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-105 flex items-center gap-2"
               >
                 <Play className="w-5 h-5" />
-                Our Services
+                {t('hero_cta_2')}
               </button>
             </div>
 
@@ -169,9 +172,9 @@ const Hero = () => {
               style={{ transitionDelay: '0.5s' }}
             >
               {[
-                { value: '10+', label: 'Years Experience' },
-                { value: '500+', label: 'Projects Completed' },
-                { value: '98%', label: 'Client Satisfaction' },
+                { value: t('hero_stat_1_value'), label: t('hero_stat_1_label') },
+                { value: t('hero_stat_2_value'), label: t('hero_stat_2_label') },
+                { value: t('hero_stat_3_value'), label: t('hero_stat_3_label') },
               ].map((stat, index) => (
                 <div key={index} className="text-center sm:text-left">
                   <div className="text-2xl sm:text-3xl font-display font-bold text-turquoise">
@@ -227,7 +230,7 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 right-8 z-20 hidden lg:flex flex-col items-center gap-2">
-        <span className="text-white/60 text-xs font-medium tracking-wider">SCROLL</span>
+        <span className="text-white/60 text-xs font-medium tracking-wider">{t('scroll')}</span>
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-3 bg-turquoise rounded-full animate-bounce" />
         </div>

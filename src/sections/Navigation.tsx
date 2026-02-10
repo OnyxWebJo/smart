@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, Phone } from 'lucide-react';
 
 const Navigation = () => {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,12 +16,16 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('home'), href: '#home' },
+    { name: t('about'), href: '#about' },
+    { name: t('services'), href: '#services' },
+    { name: t('process'), href: '#process' },
+    { name: t('contact'), href: '#contact' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -73,8 +79,13 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button and Language Switcher */}
             <div className="hidden lg:flex items-center gap-4">
+               <div className="flex items-center gap-2">
+                <button onClick={() => changeLanguage('en')} className={`text-sm font-medium ${i18n.language === 'en' ? 'text-turquoise' : isScrolled ? 'text-gray-700' : 'text-white/90'}`}>EN</button>
+                <span className={isScrolled ? 'text-gray-700' : 'text-white/90'}>|</span>
+                <button onClick={() => changeLanguage('ar')} className={`text-sm font-medium ${i18n.language === 'ar' ? 'text-turquoise' : isScrolled ? 'text-gray-700' : 'text-white/90'}`}>AR</button>
+              </div>
               <a
                 href="tel:+962777048833"
                 className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${
@@ -88,7 +99,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('#contact')}
                 className="px-5 py-2.5 bg-turquoise text-white font-medium text-sm rounded-full transition-all duration-300 hover:bg-turquoise-600 hover:shadow-glow hover:scale-105"
               >
-                Get Quote
+                {t('get_quote')}
               </button>
             </div>
 
@@ -137,9 +148,14 @@ const Navigation = () => {
               ))}
             </div>
             <div className="mt-8">
+               <div className="flex items-center justify-center gap-4 mb-4">
+                <button onClick={() => changeLanguage('en')} className={`text-lg font-medium ${i18n.language === 'en' ? 'text-turquoise' : 'text-gray-700'}`}>EN</button>
+                <span className="text-gray-700">|</span>
+                <button onClick={() => changeLanguage('ar')} className={`text-lg font-medium ${i18n.language === 'ar' ? 'text-turquoise' : 'text-gray-700'}`}>AR</button>
+              </div>
               <a
                 href="tel:+962777048833"
-                className="flex items-center gap-3 text-gray-700 mb-4"
+                className="flex items-center justify-center gap-3 text-gray-700 mb-4"
               >
                 <Phone className="w-5 h-5 text-turquoise" />
                 <span>+962 777 048 833</span>
@@ -148,7 +164,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('#contact')}
                 className="w-full py-3 bg-turquoise text-white font-medium rounded-full hover:bg-turquoise-600 transition-colors duration-300"
               >
-                Get Quote
+                {t('get_quote')}
               </button>
             </div>
           </div>

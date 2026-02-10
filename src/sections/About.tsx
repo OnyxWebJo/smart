@@ -1,21 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check, Award, Users, Target, Clock } from 'lucide-react';
 
-const features = [
-  'Certified IT professionals with 10+ years experience',
-  '24/7 technical support and monitoring',
-  'Customized solutions tailored to your needs',
-  'Affordable pricing with transparent quotes',
-];
-
-const stats = [
-  { icon: Award, value: '10+', label: 'Years Experience' },
-  { icon: Users, value: '500+', label: 'Happy Clients' },
-  { icon: Target, value: '1000+', label: 'Projects Done' },
-  { icon: Clock, value: '30 Minutes', label: 'Average Response Time' },
-];
-
 const About = () => {
+  const { t } = useTranslation();
+
+  const features = [
+    t('about_feature_1'),
+    t('about_feature_2'),
+    t('about_feature_3'),
+    t('about_feature_4'),
+  ];
+
+  const stats = [
+    { icon: Award, value: t('about_stat_1_value'), label: t('about_stat_1_label') },
+    { icon: Users, value: t('about_stat_2_value'), label: t('about_stat_2_label') },
+    { icon: Target, value: t('about_stat_3_value'), label: t('about_stat_3_label') },
+    { icon: Clock, value: t('about_stat_4_value'), label: t('about_stat_4_label') },
+  ];
+
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -77,8 +80,8 @@ const About = () => {
                     <Award className="w-7 h-7 text-turquoise" />
                   </div>
                   <div>
-                    <div className="text-3xl font-display font-bold text-gray-900">10+</div>
-                    <div className="text-sm text-gray-600">Years of Excellence</div>
+                    <div className="text-3xl font-display font-bold text-gray-900">{t('about_card_value')}</div>
+                    <div className="text-sm text-gray-600">{t('about_card_label')}</div>
                   </div>
                 </div>
               </div>
@@ -98,28 +101,22 @@ const About = () => {
             {/* Section Label */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-turquoise/10 rounded-full mb-6">
               <span className="w-2 h-2 bg-turquoise rounded-full" />
-              <span className="text-turquoise text-sm font-medium">About Us</span>
+              <span className="text-turquoise text-sm font-medium">{t('about_label')}</span>
             </div>
 
             {/* Heading */}
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Your Trusted IT Partner in{' '}
-              <span className="text-turquoise">Amman, Jordan</span>
+              {t('about_heading')}{' '}
+              <span className="text-turquoise">{t('about_heading_highlight')}</span>
             </h2>
 
             {/* Description */}
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Sources for Smart Systems is a leading IT solutions provider based in Amman, Jordan. We specialize 
-              in delivering comprehensive technology services that help businesses thrive in the 
-              digital age. From network infrastructure to security systems, our expert team ensures 
-              your technology works seamlessly.
+              {t('about_desc_1')}
             </p>
 
             <p className="text-gray-600 leading-relaxed mb-8">
-              Founded with a vision to transform how businesses approach technology, we have 
-              successfully served over 500 clients across Jordan. Our commitment to excellence, 
-              innovation, and customer satisfaction has made us the preferred IT partner for 
-              companies of all sizes.
+              {t('about_desc_2')}
             </p>
 
             {/* Features List */}
