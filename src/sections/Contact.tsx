@@ -6,12 +6,12 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Visit Us',
-    details: ['Al-Madina Al-Monawara St, Amman', 'Jordan'],
+    details: ['Al-Madina Al-Monawara St, Bullding # 202 office # 302', 'Amman, Jordan'],
   },
   {
     icon: Phone,
     title: 'Call Us',
-    details: ['+962 777 048 833', '+962 781 211 444'],
+    details: ['Sales: +962 777 048 833', 'Support: +962 781 211 444'],
   },
   {
     icon: Mail,

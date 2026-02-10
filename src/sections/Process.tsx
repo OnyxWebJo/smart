@@ -207,7 +207,7 @@ const Process = () => {
           }`}
         >
           {[
-            { value: '48h', label: 'Average Response Time' },
+            { value: '30 Minutes', label: 'Average Response Time' },
             { value: '99%', label: 'Project Success Rate' },
             { value: '24/7', label: 'Support Available' },
             { value: '100%', label: 'Client Focused' },

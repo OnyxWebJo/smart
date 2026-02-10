@@ -12,7 +12,7 @@ const stats = [
   { icon: Award, value: '10+', label: 'Years Experience' },
   { icon: Users, value: '500+', label: 'Happy Clients' },
   { icon: Target, value: '1000+', label: 'Projects Done' },
-  { icon: Clock, value: '12h', label: 'Average Response Time' },
+  { icon: Clock, value: '30 Minutes', label: 'Average Response Time' },
 ];
 
 const About = () => {

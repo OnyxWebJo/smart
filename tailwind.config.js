@@ -130,6 +130,10 @@ module.exports = {
           from: { transform: "scale(1)" },
           to: { transform: "scale(1.1)" },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -143,6 +147,7 @@ module.exports = {
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "ken-burns": "ken-burns 20s ease-out forwards",
+        marquee: 'marquee 40s linear infinite',
       },
     },
   },
