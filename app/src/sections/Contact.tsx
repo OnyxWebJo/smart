@@ -27,9 +27,9 @@ const contactInfo = [
 
 // EmailJS configuration - Replace with your actual credentials
 const EMAILJS_CONFIG = {
-  SERVICE_ID: 'service_techflow', // Replace with your EmailJS service ID
-  TEMPLATE_ID: 'template_contact', // Replace with your EmailJS template ID
-  PUBLIC_KEY: 'your_public_key_here', // Replace with your EmailJS public key
+  SERVICE_ID: 'service_60kwv89', // Replace with your EmailJS service ID
+  TEMPLATE_ID: 'template_4p1hw1n', // Replace with your EmailJS template ID
+  PUBLIC_KEY: 'kDl-xnmi6XgTIP6_p', // Replace with your EmailJS public key
 };
 
 const Contact = () => {
