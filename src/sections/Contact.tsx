@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser';
 
 const EMAILJS_CONFIG = {
   SERVICE_ID: 'service_60kwv89', // Replace with your EmailJS service ID
-  TEMPLATE_ID: 'template_4p1hw1n', // Replace with your EmailJS template ID
+  TEMPLATE_ID: 'template_9v5hr2s', // Replace with your EmailJS template ID
   PUBLIC_KEY: 'kDl-xnmi6XgTIP6_p', // Replace with your EmailJS public key
 };
 
