@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Twitter, User } from 'lucide-react';
+import { Linkedin, Twitter } from 'lucide-react';
 
 const Team = () => {
   const { t } = useTranslation();
@@ -9,8 +9,18 @@ const Team = () => {
 
   const teamMembers = [
     {
+      name: t('team_member_5_name'),
+      role: t('team_member_5_role'),
+      image: 'images/team/ceo.jpeg', // Replace with actual image path
+      social: {
+        linkedin: '#',
+        twitter: '#',
+      },
+    },
+    {
       name: t('team_member_1_name'),
       role: t('team_member_1_role'),
+      image: 'images/team/member1.jpeg', // Replace with actual image path
       social: {
         linkedin: '#',
         twitter: '#',
@@ -19,6 +29,7 @@ const Team = () => {
     {
       name: t('team_member_2_name'),
       role: t('team_member_2_role'),
+      image: 'images/team/member2.jpeg', // Replace with actual image path
       social: {
         linkedin: '#',
         twitter: '#',
@@ -27,14 +38,16 @@ const Team = () => {
     {
       name: t('team_member_3_name'),
       role: t('team_member_3_role'),
+      image: 'images/team/member3.jpeg', // Replace with actual image path
       social: {
         linkedin: '#',
         twitter: '#',
       },
     },
-    {
+        {
       name: t('team_member_4_name'),
       role: t('team_member_4_role'),
+      image: 'images/team/member4.jpeg', // Replace with actual image path
       social: {
         linkedin: '#',
         twitter: '#',
@@ -84,7 +97,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -94,9 +107,7 @@ const Team = () => {
               style={{ transitionDelay: `${300 + index * 100}ms` }}
             >
               <div className="relative overflow-hidden rounded-2xl">
-                <div className="w-full h-80 bg-gray-200 flex items-center justify-center">
-                  <User className="w-20 h-20 text-gray-400" />
-                </div>
+                <img src={member.image} alt={member.name} className="w-full h-80 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="font-display text-xl font-bold text-white">{member.name}</h3>
