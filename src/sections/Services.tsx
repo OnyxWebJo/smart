@@ -1,108 +1,133 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Network, Wrench, Video, Shield, ArrowRight, Speaker, Printer, Users, Rss, Code, Smartphone } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+export interface ServiceItem {
+  id: number;
+  slug: string;
+  icon: any;
+  title: string;
+  description: string;
+  image: string;
+  features: string[];
+}
+
+export const getServices = (t: (key: string) => string): ServiceItem[] => [
+  {
+    id: 1,
+    slug: 'computer-networks',
+    icon: Network,
+    title: t('service_1_title'),
+    description: t('service_1_desc'),
+    image: '/images/service-networks.jpg',
+    features: [t('service_1_f_1'), t('service_1_f_2'), t('service_1_f_3'), t('service_1_f_4')],
+  },
+  {
+    id: 2,
+    slug: 'computer-maintenance',
+    icon: Wrench,
+    title: t('service_2_title'),
+    description: t('service_2_desc'),
+    image: '/images/service-maintenance.jpg',
+    features: [t('service_2_f_1'), t('service_2_f_2'), t('service_2_f_3'), t('service_2_f_4')],
+  },
+  {
+    id: 3,
+    slug: 'cctv-surveillance',
+    icon: Video,
+    title: t('service_3_title'),
+    description: t('service_3_desc'),
+    image: '/images/service-cctv.jpg',
+    features: [t('service_3_f_1'), t('service_3_f_2'), t('service_3_f_3'), t('service_3_f_4')],
+  },
+  {
+    id: 4,
+    slug: 'alarm-systems',
+    icon: Shield,
+    title: t('service_4_title'),
+    description: t('service_4_desc'),
+    image: '/images/service-alarms.jpg',
+    features: [t('service_4_f_1'), t('service_4_f_2'), t('service_4_f_3'), t('service_4_f_4')],
+  },
+  {
+    id: 5,
+    slug: 'low-current-systems',
+    icon: Rss,
+    title: t('service_5_title'),
+    description: t('service_5_desc'),
+    image: '/images/_low-current systems.png',
+    features: [t('service_5_f_1'), t('service_5_f_2'), t('service_5_f_3')],
+  },
+  {
+    id: 6,
+    slug: 'attendance-systems',
+    icon: Users,
+    title: t('service_6_title'),
+    description: t('service_6_desc'),
+    image: '/images/attendance.png',
+    features: [t('service_6_f_1'), t('service_6_f_2'), t('service_6_f_3')],
+  },
+  {
+    id: 7,
+    slug: 'sound-systems',
+    icon: Speaker,
+    title: t('service_7_title'),
+    description: t('service_7_desc'),
+    image: '/images/service-sound-systems.jpg',
+    features: [t('service_7_f_1'), t('service_7_f_2'), t('service_7_f_3'), t('service_7_f_4')],
+  },
+  {
+    id: 8,
+    slug: 'access-control-systems',
+    icon: Shield,
+    title: t('service_8_title'),
+    description: t('service_8_desc'),
+    image: '/images/service-access-control.jpg',
+    features: [t('service_8_f_1'), t('service_8_f_2'), t('service_8_f_3'), t('service_8_f_4')],
+  },
+  {
+    id: 9,
+    slug: 'printers-copiers',
+    icon: Printer,
+    title: t('service_9_title'),
+    description: t('service_9_desc'),
+    image: '/images/service-printers.jpg',
+    features: [t('service_9_f_1'), t('service_9_f_2'), t('service_9_f_3')],
+  },
+  {
+    id: 10,
+    slug: 'maintenance-contracts',
+    icon: Wrench,
+    title: t('service_10_title'),
+    description: t('service_10_desc'),
+    image: '/images/service-contracts.jpg',
+    features: [t('service_10_f_1'), t('service_10_f_2'), t('service_10_f_3'), t('service_10_f_4')],
+  },
+  {
+    id: 11,
+    slug: 'website-development',
+    icon: Code,
+    title: t('service_11_title'),
+    description: t('service_11_desc'),
+    image: '/images/service-website-design.jpg',
+    features: [t('service_11_f_1'), t('service_11_f_2'), t('service_11_f_3'), t('service_11_f_4')],
+  },
+  {
+    id: 12,
+    slug: 'mobile-app-development',
+    icon: Smartphone,
+    title: t('service_12_title'),
+    description: t('service_12_desc'),
+    image: '/images/service-mobile-app.jpg',
+    features: [t('service_12_f_1'), t('service_12_f_2'), t('service_12_f_3'), t('service_12_f_4')],
+  },
+];
 
 const Services = () => {
   const { t } = useTranslation();
-
-  const services = [
-    {
-      id: 1,
-      icon: Network,
-      title: t('service_1_title'),
-      description: t('service_1_desc'),
-      image: '/images/service-networks.jpg',
-      features: [t('service_1_f_1'), t('service_1_f_2'), t('service_1_f_3'), t('service_1_f_4')],
-    },
-    {
-      id: 2,
-      icon: Wrench,
-      title: t('service_2_title'),
-      description: t('service_2_desc'),
-      image: '/images/service-maintenance.jpg',
-      features: [t('service_2_f_1'), t('service_2_f_2'), t('service_2_f_3'), t('service_2_f_4')],
-    },
-    {
-      id: 3,
-      icon: Video,
-      title: t('service_3_title'),
-      description: t('service_3_desc'),
-      image: '/images/service-cctv.jpg',
-      features: [t('service_3_f_1'), t('service_3_f_2'), t('service_3_f_3'), t('service_3_f_4')],
-    },
-    {
-      id: 4,
-      icon: Shield,
-      title: t('service_4_title'),
-      description: t('service_4_desc'),
-      image: '/images/service-alarms.jpg',
-      features: [t('service_4_f_1'), t('service_4_f_2'), t('service_4_f_3'), t('service_4_f_4')],
-    },
-    {
-      id: 5,
-      icon: Rss,
-      title: t('service_5_title'),
-      description: t('service_5_desc'),
-      image: '/images/_low-current systems.png',
-      features: [t('service_5_f_1'), t('service_5_f_2'), t('service_5_f_3')],
-    },
-    {
-      id: 6,
-      icon: Users,
-      title: t('service_6_title'),
-      description: t('service_6_desc'),
-      image: '/images/attendance.png',
-      features: [t('service_6_f_1'), t('service_6_f_2'), t('service_6_f_3')],
-    },
-    {
-      id: 7,
-      icon: Speaker,
-      title: t('service_7_title'),
-      description: t('service_7_desc'),
-      image: '/images/service-sound-systems.jpg',
-      features: [t('service_7_f_1'), t('service_7_f_2'), t('service_7_f_3'), t('service_7_f_4')],
-    },
-    {
-      id: 8,
-      icon: Shield,
-      title: t('service_8_title'),
-      description: t('service_8_desc'),
-      image: '/images/service-access-control.jpg',
-      features: [t('service_8_f_1'), t('service_8_f_2'), t('service_8_f_3'), t('service_8_f_4')],
-    },
-    {
-      id: 9,
-      icon: Printer,
-      title: t('service_9_title'),
-      description: t('service_9_desc'),
-      image: '/images/service-printers.jpg',
-      features: [t('service_9_f_1'), t('service_9_f_2'), t('service_9_f_3')],
-    },
-    {
-      id: 10,
-      icon: Wrench,
-      title: t('service_10_title'),
-      description: t('service_10_desc'),
-      image: '/images/service-contracts.jpg',
-      features: [t('service_10_f_1'), t('service_10_f_2'), t('service_10_f_3'), t('service_10_f_4')],
-    },
-    {
-      id: 11,
-      icon: Code,
-      title: t('service_11_title'),
-      description: t('service_11_desc'),
-      image: '/images/service-website-design.jpg',
-      features: [t('service_11_f_1'), t('service_11_f_2'), t('service_11_f_3'), t('service_11_f_4')],
-    },
-    {
-      id: 12,
-      icon: Smartphone,
-      title: t('service_12_title'),
-      description: t('service_12_desc'),
-      image: '/images/service-mobile-app.jpg',
-      features: [t('service_12_f_1'), t('service_12_f_2'), t('service_12_f_3'), t('service_12_f_4')],
-    },
-  ];
+  const services = getServices(t);
+  const navigate = useNavigate();
 
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -158,6 +183,9 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
+              onClick={() => {
+                navigate(`/services/${service.slug}`);
+              }}
               className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } hover:scale-105 hover:shadow-xl`}
@@ -201,7 +229,12 @@ const Services = () => {
 
                 {/* CTA */}
                 <a
-                  href="#contact"
+                  href={`/services/${service.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navigate(`/services/${service.slug}`);
+                  }}
                   className="inline-flex items-center gap-2 text-turquoise font-medium text-sm group/link"
                 >
                   {t('learn_more')}

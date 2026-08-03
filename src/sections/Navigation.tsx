@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Phone } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +39,18 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const isHomePage = location.pathname === '/';
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    if (isHomePage) {
+      scrollToSection(href);
+    } else {
+      setIsMobileMenuOpen(false);
+      navigate(`/${href}`);
+    }
+  };
+
   return (
     <>
       <nav
@@ -49,10 +64,15 @@ const Navigation = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a
-              href="#home"
+              href="/"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('#home');
+                if (isHomePage) {
+                  scrollToSection('#home');
+                } else {
+                  setIsMobileMenuOpen(false);
+                  navigate('/');
+                }
               }}
               className="flex items-center gap-2 group"
             >
@@ -65,10 +85,7 @@ const Navigation = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`font-medium text-sm transition-all duration-300 hover:text-turquoise relative group ${
                     isScrolled ? 'text-gray-700' : 'text-white/90'
                   }`}
@@ -96,7 +113,7 @@ const Navigation = () => {
                 <span>+962 777 048 833</span>
               </a>
               <button
-                onClick={() => scrollToSection('#contact')}
+                onClick={(e) => handleNavClick(e, '#contact')}
                 className="px-5 py-2.5 bg-turquoise text-white font-medium text-sm rounded-full transition-all duration-300 hover:bg-turquoise-600 hover:shadow-glow hover:scale-105"
               >
                 {t('get_quote')}
@@ -137,10 +154,7 @@ const Navigation = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-gray-800 font-medium text-lg py-3 border-b border-gray-100 hover:text-turquoise transition-colors duration-300"
                 >
                   {link.name}
@@ -161,7 +175,7 @@ const Navigation = () => {
                 <span>+962 777 048 833</span>
               </a>
               <button
-                onClick={() => scrollToSection('#contact')}
+                onClick={(e) => handleNavClick(e, '#contact')}
                 className="w-full py-3 bg-turquoise text-white font-medium rounded-full hover:bg-turquoise-600 transition-colors duration-300"
               >
                 {t('get_quote')}
